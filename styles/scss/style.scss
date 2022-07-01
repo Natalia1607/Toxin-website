@@ -1,17 +1,20 @@
+/* @import './normalize'; */
+@import './vars';
+
 @font-face {
     font-family: 'Montserrat-Regular';
-    src: url('./../fonts/Montserrat-Regular/Montserrat-Regular.ttf') format('ttf'),
-         url('./../fonts/Montserrat-Regular/Montserrat-Regular.woff') format('woff'),
-         url('./../fonts/Montserrat-Regular/Montserrat-Regular.svg') format('svg');
+    src: url('./../../fonts/Montserrat-Regular/Montserrat-Regular.ttf') format('ttf'),
+         url('./../../fonts/Montserrat-Regular/Montserrat-Regular.woff') format('woff'),
+         url('./../../fonts/Montserrat-Regular/Montserrat-Regular.svg') format('svg');
     font-weight: 400;
     font-style: normal;
 }  
 
 @font-face {
     font-family: 'Montserrat-Bold';
-    src: url('./../fonts/Montserrat-Bold/Montserrat-Bold.ttf') format('ttf'),
-         url('./../fonts/Montserrat-Bold/Montserrat-Bold.woff') format('woff'),
-         url('./../fonts/Montserrat-Bold/Montserrat-Bold.svg') format('svg');
+    src: url('./../../fonts/Montserrat-Bold/Montserrat-Bold.ttf') format('ttf'),
+         url('./../../fonts/Montserrat-Bold/Montserrat-Bold.woff') format('woff'),
+         url('./../../fonts/Montserrat-Bold/Montserrat-Bold.svg') format('svg');
     font-weight: 700;
     font-style: normal;
 } 
@@ -20,6 +23,13 @@
     margin: 0;
     box-sizing: border-box;
     font-family: 'Montserrat-Regular';
+    font-size: 14px;
+    color: $textColor;
+}
+
+.material-icons {
+    line-height: 24px;
+    color: $linkColor;
 }
 
 .container {
@@ -50,6 +60,7 @@
 .navbar__list {
     padding-left: 0px;
     display: flex;
+    align-items: center;
 }
 
 .navbar__link {
@@ -61,10 +72,17 @@
     text-decoration: none;
 }
 
+.link_more {
+    display: flex;
+    align-items: center;
+}
+
 .btn {
     border-radius: 22px;
     text-transform: uppercase;
     font-family: 'Montserrat-Bold';
+    cursor: pointer;
+    font-size: 12px;
 }
 
 .btn_transparent {
@@ -83,13 +101,13 @@
     bottom: -2px;
     left: -2px;
     right: -2px;
-    background: linear-gradient(180deg, #BC9CFF 0%, #8BA4F9 100%);
+    background: $btnBackground;
     z-index: -1;
     border-radius: 22px;
 }
 
 .btn_gradient {
-    background: linear-gradient(180deg, #BC9CFF 0%, #8BA4F9 100%);
+    background: $btnBackground;
     width: 196px;
     height: 34px;
     border: none;
@@ -126,35 +144,34 @@ img {
     position: relative;
 }
 
-.group {
+.cards {
     padding: 40px 30px 30px 30px;
     width: 380px;
-    height: 374px;
     position: absolute;
     left: 140px;
     top: 70px;
     background-color: #fff;
-}
-
-.group h2 {
-    margin-bottom: 21px;
-    width: 270px;
-    font-size: 24px;
-    line-height: 29px;
-    text-align: left;
-}
-
-.form__booking {
-    width: 100%;
-    display: grid;
-    grid-template-columns: 50% 50%;
-    grid-template-rows: auto auto auto;
-    grid-row-gap: 20px;
+    &__title {
+        margin-bottom: 21px;
+        width: 270px;
+        font-size: 24px;
+        line-height: 29px;
+        text-align: left;
+    }
+    &__form {
+        width: 100%;
+        display: grid;
+        grid-template-columns: 50% 50%;
+        grid-template-rows: auto auto auto;
+        grid-row-gap: 20px;
+    }
 }
 
 label {
+    font-family: 'Montserrat-Bold';
     font-size: 12px;
     line-height: 15px;
+    color: #1F2041;
     text-transform: uppercase;
 }
 
@@ -187,6 +204,30 @@ select {
 .input {
     width: 320px;
     border-radius: 22px;
+    font-family: 'Montserrat-Bold';
+    font-size: 12px;
+    line-height: 15px;
+    text-transform: uppercase;
+    color: #FFFFFF;
+    cursor: pointer;
+}
+
+.wrap-btn::after {  
+    content: '\e5c8';
+    width: 44px;
+    position: absolute;
+    bottom: 35px;
+    left: 310px;
+    font-family: 'Material Icons';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 24px;
+    line-height: 24px;
+    display: flex;
+    align-items: center;
+    text-align: center;
+    color: #FFFFFF;
+    cursor: pointer;
 }
 
 .check-in, 
@@ -207,10 +248,7 @@ select {
 
 .check-in::-webkit-calendar-picker-indicator,
 .check-out::-webkit-calendar-picker-indicator{  /* меняем значок календаря по умолчанию  */
-    background: url('./../image/expand_more.png') no-repeat;
-    background-position: center;
-    padding-right: 15px;
-    cursor: pointer;
+    background: none;
 }
 
 .nomberOfguests {
@@ -230,6 +268,25 @@ select {
     color: rgba(31, 32, 65, 0.75);
 }
 
+.check-in::after,
+.check-out::after {
+    content: '\e5cf';
+    position: absolute;
+    left: 150px;
+    font-family: 'Material Icons';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 24px;
+    line-height: 24px;
+    color: rgba(31, 32, 65, 0.5);
+    cursor: pointer;
+}
+
+.check-out::after {
+    left: 319px;
+}
+
+
 /* FOOTER */
 
 .footer_row {
@@ -244,12 +301,19 @@ select {
 }
 
 .footer_logo {
+    margin-bottom: 20px;
     width: 105px;
     height: 40px;
 }
 
+.footer-text {
+    font-size: 14px;
+    line-height: 24px;
+    color: rgba(31, 32, 65, 0.75);
+}
+
 .footer_nav_wrapper {
-    width: 549px;
+    width: 600px;
     display: flex;
 }
 
@@ -265,7 +329,7 @@ select {
     margin-right: 51px;
 }
 
-.footer-nav-title {
+.footer-subtitle {
     margin-bottom: 21px;
     text-transform: uppercase;
     font-family: 'Montserrat-Bold';
@@ -287,16 +351,36 @@ select {
 
 .footer-nav a {
     text-decoration: none;
+    color: rgba(31, 32, 65, 0.5);
 }
-
-
 
 .footer_subs {
     width: 260px;
 }
-.subs-title {
-}
+
 .subs-desc {
+    margin-bottom: 20px;
+    font-size: 14px;
+    line-height: 24px;
+    color: rgba(31, 32, 65, 0.75);
 }
+
 .email {
+  width: 260px;
+  height: 44px;
+  background: #FFFFFF;
+  border: 1px solid rgba(31, 32, 65, 0.25);
+  border-radius: 4px;
+}
+
+.email[placeholder] {
+    padding-top: 12px;
+    padding-bottom: 8px;
+    padding-left: 15px;
+    font-family: 'Montserrat-Regular';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 24px;
+    color: rgba(31, 32, 65, 0.25);
 }
